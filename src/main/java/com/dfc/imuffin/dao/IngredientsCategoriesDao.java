@@ -20,9 +20,9 @@ public class IngredientsCategoriesDao {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "ingr_cat_id")
+    @OneToMany(mappedBy = "ingCat") //nazwa zmiennej
     @OnDelete(action = OnDeleteAction.CASCADE)
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<IngredientsDao> ingredients = new ArrayList();
+    private List<IngredientsDao> ingredients = new ArrayList<>();
 
 }

@@ -1,7 +1,7 @@
 package com.dfc.imuffin.configuration;
 
-import com.dolinka.security.JwtConfigurer;
-import com.dolinka.security.JwtTokenProvider;
+import com.dfc.imuffin.security.JwtConfigurer;
+import com.dfc.imuffin.security.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -51,3 +51,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
+}

@@ -25,9 +25,4 @@ public class IngredientsDao {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private IngredientsCategoriesDao ingCat;
 
-    @OneToMany(mappedBy = "ingredient_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private List<RecipeIngredientsDao> recipeIngredients = new ArrayList();
-
 }

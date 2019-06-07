@@ -1,6 +1,6 @@
 package com.dfc.imuffin.security;
 
-import com.dolinka.exception.InvalidJwtAuthenticationException;
+import com.dfc.imuffin.exception.InvalidJwtAuthenticationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;

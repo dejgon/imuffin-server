@@ -1,11 +1,10 @@
 package com.dfc.imuffin.service;
 
-import com.dfc.imuffin.dao.RecipeDao;
 import com.dfc.imuffin.dto.*;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.jws.soap.SOAPBinding;
+import java.util.List;
 
 public interface UserService {
 
@@ -15,8 +14,6 @@ public interface UserService {
 
     void updateUser(UserDetails userDetails, UpdateUserDto updateUserDto);
 
-    void addSkiValleyToFavorite(UserDetails userDetails,SkiValleyDao skiValleyDao);
-
     UserDto getUser(AuthenticationDto authenticationDto);
 
     UserDto getUserByToken(UserDetails userDetails);
@@ -24,6 +21,5 @@ public interface UserService {
     UserRoleDto getUserRole(UserDto userDto);
 
     String loginUser(UserDto userDto);
-
 
 }

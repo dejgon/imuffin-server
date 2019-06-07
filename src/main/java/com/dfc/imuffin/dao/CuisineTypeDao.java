@@ -18,17 +18,13 @@ public class CuisineTypeDao {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "cuisine_type_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private List<RecipeCuisineDao> recipeCuisines = new ArrayList();
+    @ManyToMany(mappedBy = "ctDao")
+    private List<RecipeDao> recipes = new ArrayList<>();
 
     public CuisineTypeDao() {
     }
 
-    public CuisineTypeDao(String name, List<RecipeCuisineDao> recipeCuisines) {
-        this.name = name;
-        this.recipeCuisines = recipeCuisines;
-    }
+
 
     public Long getId() {
         return id;
@@ -46,11 +42,4 @@ public class CuisineTypeDao {
         this.name = name;
     }
 
-    public List<RecipeCuisineDao> getRecipeCuisines() {
-        return recipeCuisines;
-    }
-
-    public void setRecipeCuisines(List<RecipeCuisineDao> recipeCuisines) {
-        this.recipeCuisines = recipeCuisines;
-    }
 }

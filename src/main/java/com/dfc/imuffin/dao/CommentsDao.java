@@ -1,8 +1,5 @@
 package com.dfc.imuffin.dao;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 
 
@@ -23,7 +20,7 @@ public class CommentsDao {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "users_id")
-    private UsersDao userId;
+    private UserDao userId;
 
 
 }

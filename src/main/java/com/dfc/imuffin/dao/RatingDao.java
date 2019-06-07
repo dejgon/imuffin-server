@@ -1,8 +1,6 @@
 package com.dfc.imuffin.dao;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "ratings")
@@ -21,6 +19,6 @@ public class RatingDao {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private UsersDao userId;
+    private UserDao userId;
 
 }

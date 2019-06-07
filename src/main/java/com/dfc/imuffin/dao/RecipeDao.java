@@ -3,6 +3,7 @@ package com.dfc.imuffin.dao;
 import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.ArrayList;
@@ -31,22 +32,20 @@ public class RecipeDao {
     @Column(name = "difficulty")
     private String difficulty;
 
-    @OneToMany(mappedBy = "recipe_id")
+    @OneToMany(mappedBy = "recipeId")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<CommentsDao> comments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "recipe_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private List<RecipeIngredientsDao> recipeIngredients = new ArrayList<>();
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "recipe_cuisine",joinColumns = {@JoinColumn(name="recipe_id")},inverseJoinColumns = {@JoinColumn(name="cuisineType_id")})
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<CuisineTypeDao> ctDao = new ArrayList<>();
 
-    @OneToMany(mappedBy = "recipe_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private List<CommentsDao> comments = new ArrayList<>();
+    @ManyToMany(mappedBy = "recipes")
+    private List<UserDao> users = new ArrayList<>();
 
-    @OneToMany(mappedBy = "recipe_id")
+    @OneToMany(mappedBy = "recipeId")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<RatingDao> ratings = new ArrayList<>();
