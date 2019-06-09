@@ -16,9 +16,9 @@ spring:
 
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/ksiazka?autoReconnect=true ||
-    username: postgres
-    password: root
+    url: jdbc:postgresql://ec2-75-101-128-10.compute-1.amazonaws.com:5432/d5jjchg7av06iq?autoReconnect=true&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
+    username: opuqnhskxvtxsz
+    password: 28c9088170f4ca6360847a3e11a4107e0c36374a9c86fbfbe313a44ec8701e7c
 
   jpa:
     openInView: false

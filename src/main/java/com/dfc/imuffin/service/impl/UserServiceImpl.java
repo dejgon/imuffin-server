@@ -1,5 +1,6 @@
 package com.dfc.imuffin.service.impl;
 
+import com.dfc.imuffin.dao.RecipeDao;
 import com.dfc.imuffin.dao.UserDao;
 import com.dfc.imuffin.dao.UserRoleDao;
 import com.dfc.imuffin.dto.*;
@@ -102,5 +103,45 @@ public class UserServiceImpl implements UserService {
     @Override
     public String loginUser(UserDto userDto) {
         return jwtTokenProvider.createToken(userDto.getUsername(),getUserRole(userDto).getRoles());
+    }
+
+    @Override
+    @Transactional
+    public void addFavorite(UserDto userDto, Long skiValleyId) {
+        UserDao userDao = userRepository.findByUsername(userDto.getUsername()).get();
+        userDao.getRecipes().add(recipeRepository.findById(skiValleyId).get());
+        userRepository.save(userDao);
+    }
+
+    @Override
+    @Transactional
+    public List<RecipeDto> getFavorites(UserDto userDto) {
+        UserDao userDao = userRepository.findByUsername(userDto.getUsername()).get();
+        List<RecipeDto> recipeDtoList = new ArrayList<>();
+        for(RecipeDao recipeDao : userDao.getRecipes()) {
+            RecipeDto recipeDto = new RecipeDto();
+            recipeDto.setId(recipeDao.getId());
+            recipeDto.setName(recipeDao.getName());
+            recipeDto.setContent(recipeDao.getContent());
+            recipeDto.setUrl(recipeDao.getUrl());
+            recipeDto.setTimeToPrepare(recipeDao.getTimeToPrepare());
+            recipeDto.setDifficulty(recipeDao.getDifficulty());
+            recipeDtoList.add(recipeDto);
+        }
+        return recipeDtoList;
+    }
+    @Override
+    @Transactional
+    public void deleteFromFavorite(UserDto userDto, Long recipeId) {
+        UserDao userDao = userRepository.findByUsername(userDto.getUsername()).get();
+        List<RecipeDao> recipeDaoList = userDao.getRecipes();
+        List<RecipeDao> recipeNewDaoList = new ArrayList<>();
+        for (RecipeDao recipeDao : recipeDaoList) {
+            if (recipeDao.getId() != recipeId) {
+                recipeNewDaoList.add(recipeDao);
+            }
+        }
+        userDao.setRecipes(recipeNewDaoList);
+        userRepository.save(userDao);
     }
 }

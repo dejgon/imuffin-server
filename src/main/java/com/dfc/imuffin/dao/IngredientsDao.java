@@ -1,13 +1,9 @@
 package com.dfc.imuffin.dao;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "ingredients")
@@ -25,4 +21,28 @@ public class IngredientsDao {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private IngredientsCategoriesDao ingCat;
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public IngredientsCategoriesDao getIngCat() {
+        return ingCat;
+    }
+
+    public void setIngCat(IngredientsCategoriesDao ingCat) {
+        this.ingCat = ingCat;
+    }
 }

@@ -22,4 +22,14 @@ public interface UserService {
 
     String loginUser(UserDto userDto);
 
+    @Transactional
+    void addFavorite(UserDto userDto, Long skiValleyId);
+
+    @Transactional
+    List<RecipeDto> getFavorites(UserDto userDto);
+
+
+    @Transactional
+    void deleteFromFavorite(UserDto userDto, Long skiValleyId);
+
 }

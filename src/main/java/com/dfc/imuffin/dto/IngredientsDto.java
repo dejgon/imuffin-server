@@ -1,4 +1,6 @@
 package com.dfc.imuffin.dto;
 
-public class IngredientsDto {
+import java.io.Serializable;
+
+public class IngredientsDto implements Serializable {
 }
