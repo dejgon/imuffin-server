@@ -45,6 +45,11 @@ public class RecipeDao {
     @ManyToMany(mappedBy = "recipes")
     private List<UserDao> users = new ArrayList<>();
 
+    @OneToMany(mappedBy = "ingredientsDao")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<RecipeIngredientsDao> ingredients;
+
     @OneToMany(mappedBy = "recipeId")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -128,5 +133,13 @@ public class RecipeDao {
 
     public void setRatings(List<RatingDao> ratings) {
         this.ratings = ratings;
+    }
+
+    public List<RecipeIngredientsDao> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<RecipeIngredientsDao> ingredients) {
+        this.ingredients = ingredients;
     }
 }

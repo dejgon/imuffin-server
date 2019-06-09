@@ -40,8 +40,6 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public RecipeDto getRecipe(Long id) {
-
-
         RecipeDao recipeDao = recipeRepo.findById(id).get();
         RecipeDto recipeDto = new RecipeDto();
         recipeDto.setId(recipeDao.getId());

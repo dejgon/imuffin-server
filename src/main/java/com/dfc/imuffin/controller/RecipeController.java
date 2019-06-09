@@ -1,5 +1,6 @@
 package com.dfc.imuffin.controller;
 
+import com.dfc.imuffin.service.RecipeIngredientsService;
 import com.dfc.imuffin.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,8 @@ public class RecipeController {
 
     @Autowired
     RecipeService recipeService;
+    @Autowired
+    RecipeIngredientsService rcpIngService;
 
     @RequestMapping(value = "/recipes", method = RequestMethod.GET)
     public ResponseEntity getRecipes() {
@@ -31,6 +34,7 @@ public class RecipeController {
     public ResponseEntity getSkiValley(@RequestParam Long id) {
         Map<Object, Object> response = new HashMap<>();
         response.put("recipe", recipeService.getRecipe(id));
+        response.put("ingredients", rcpIngService.getIngredients(id));
         response.put("statusMessage", "Ok");
         response.put("statusCode", "200");
         return new ResponseEntity<>(response, HttpStatus.OK);
